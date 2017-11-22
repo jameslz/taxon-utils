@@ -1,0 +1,37 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+die qq{Usage:$0 <node> <name> \
+Example: taxon-db nodes.dmp  names.dmp  >ncbi.map\n} if( @ARGV != 2 );
+
+my ($node, $name) = @ARGV;
+my %tax_name  = ();
+
+load_name();
+print_node();
+
+exit;
+
+sub load_name{
+    open (DATA ,       $name) || die "$!"; 
+    while(<DATA>){
+        my @its = split /\s+\|\s+/ , $_;    
+        if(/scientific name/){
+            $tax_name{  $its[0] }  = $its[1];
+        }
+    }
+    close DATA;
+}
+
+sub print_node{
+
+    open (DATA,         $node) || die "$!";
+    while (<DATA>) {
+       my @its = split /\s+\|\s+/ , $_;
+       print qq{$its[0]\t$its[1]\t$its[2]\t$tax_name{ $its[0] }\t$tax_name{$its[1]}\n};
+    }
+    close DATA;
+}
+
