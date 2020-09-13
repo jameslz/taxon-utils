@@ -1,5 +1,25 @@
-# taxon-utils
-taxon-utils: utils for NCBI taxonomy manipulation
+# taxon-utils: utils for taxonomy manipulation
+
+### interface
+
+    $ taxon-utils
+
+    Usage:   taxon-utils <command> <arguments>
+    Version: 0.0.1-r1
+
+    Command:
+          translate   translate the taxon_id map to lineage.
+          lineage     translate the taxon_id map to full lineage.
+          name        translate the taxon_id map to name.
+          lca         perform lca for given taxon match per query.
+          bin         bin reads for specify level. default: [species] .
+          clade       get clade taxon id from NCBI taxonomy tree.
+          filter      filter the entries with specified taxonIds.
+
+    Licenced:
+    (c) 2018-2020 - LEI ZHANG
+    Logic Informatics Co.,Ltd.
+    zhanglei@logicinformatics.com
 
 ## species_assign
 
